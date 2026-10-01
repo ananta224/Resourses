@@ -62,3 +62,36 @@ hipaa_x12_ruleless.mtt
 Qualifier_Template.json
 
 >type_5.mtt
+
+
+# C:\Users\anantas\Downloads\ISTEPFH1M_11.0.2_MP_ML\hcp_1102_v1102.zip.signed\hcp_1102_v1102\healthcare_v11.0.2.0
+# C:\Users\anantas\Downloads\ISTEPFH1M_11.0.2_MP_ML
+import os
+
+def generate_file_report(root_folder, output_file="file_report.txt"):
+    total_files = 0
+
+    with open(output_file, "w", encoding="utf-8") as report:
+        report.write(f"File Report for: {root_folder}\n")
+        report.write("=" * 100 + "\n\n")
+
+        for folder_path, subfolders, files in os.walk(root_folder):
+            for file_name in files:
+                total_files += 1
+                full_path = os.path.join(folder_path, file_name)
+
+                report.write(f"File Name : {file_name}\n")
+                report.write(f"Location  : {full_path}\n")
+                report.write("-" * 100 + "\n")
+
+        report.write(f"\nTotal Files Found: {total_files}\n")
+
+    print(f"Report generated successfully: {output_file}")
+    print(f"Total files found: {total_files}")
+
+
+if __name__ == "__main__":
+    # Change this path to the folder you want to scan
+    folder_to_scan = r"XXXXXXX"
+
+    generate_file_report(folder_to_scan)
